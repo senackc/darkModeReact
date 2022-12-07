@@ -1,24 +1,40 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import ButtonAppBar from './AppBar';
+import SimpleCard from './Card';
+import {createTheme, ThemeProvider} from '@mui/material/styles';
+import { Paper } from '@mui/material';
+import {Button} from '@mui/material';
+
 
 function App() {
+
+  const [darkMode, setDarkMode] = useState(false)
+
+  const theme = createTheme({
+    palette: {
+      mode: darkMode?'dark':'light'
+
+    },
+
+  })
+
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <ThemeProvider theme={theme}>
+      <Paper style={{height: "250vh"}}>
+      <div className="App">
+       <Button onClick={()=>setDarkMode(!darkMode)}>Dark Mode</Button>
+
+        <ButtonAppBar check={darkMode} change= {()=>setDarkMode(!darkMode)}>
+      <h1>Dark Mode</h1>
+      </ButtonAppBar>
+        <SimpleCard></SimpleCard>
+
     </div>
+    </Paper>
+    </ThemeProvider>
   );
 }
 
