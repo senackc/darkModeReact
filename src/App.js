@@ -2,9 +2,9 @@ import { useState } from 'react';
 import './App.css';
 import ButtonAppBar from './AppBar';
 import SimpleCard from './Card';
-import {createTheme, ThemeProvider} from '@mui/material/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Paper } from '@mui/material';
-import {Button} from '@mui/material';
+
 
 
 function App() {
@@ -13,7 +13,7 @@ function App() {
 
   const theme = createTheme({
     palette: {
-      mode: darkMode?'dark':'light'
+      mode: darkMode ? 'dark' : 'light'
 
     },
 
@@ -23,17 +23,17 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Paper style={{height: "250vh"}}>
-      <div className="App">
-       <Button onClick={()=>setDarkMode(!darkMode)}>Dark Mode</Button>
+      <Paper style={{ height: "250vh" }}>
+        <div className="App">
+          <ButtonAppBar check={darkMode} change={() => setDarkMode(!darkMode)}>
+            <h1>Dark Mode</h1>
+          </ButtonAppBar>
+          <SimpleCard>
 
-        <ButtonAppBar check={darkMode} change= {()=>setDarkMode(!darkMode)}>
-      <h1>Dark Mode</h1>
-      </ButtonAppBar>
-        <SimpleCard></SimpleCard>
+          </SimpleCard>
 
-    </div>
-    </Paper>
+        </div>
+      </Paper>
     </ThemeProvider>
   );
 }
